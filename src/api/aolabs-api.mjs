@@ -53,6 +53,10 @@ export const test = async (agentId, input) => {
         kennel_id: KENNEL_ID,
         agent_id: agentId,
         INPUT: input,
+        control: {
+            US: false,
+            states: 5
+        }
     });
 
     try {

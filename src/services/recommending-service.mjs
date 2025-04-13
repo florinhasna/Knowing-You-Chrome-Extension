@@ -21,6 +21,7 @@ export const startRecommending = async (userId) => {
         for (let video of inputsToProcess) {
             const testResponse = await test(userId, video.input);
 
+            // Check agent response
             if (testResponse.story) {
                 video.story = testResponse.story;
                 video.score = getScorePercentage(testResponse.story);

@@ -42,3 +42,7 @@ export const VIDEOS_TO_RETURN = 10;
 
 /** @constant {number} MAX_RESULTS - The maximum number of recommendations to search in one iteration. */
 export const MAX_RESULTS = 2;
+
+/** @constant {Array} USERS - Relevant user IDs to be used in evaluation. */
+export const USERS = ['1742817790125', '1742973144298', '1742993821037', '1743005866662', '1743008964623', 
+'1743146373825', '1743249881947', '1743345182999', '1743443306830', '1743452479199', '1743496298859'];

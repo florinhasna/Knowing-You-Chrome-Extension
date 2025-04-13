@@ -1,15 +1,9 @@
-import { getRandomIndex } from './../utils/utilities.mjs'
-
 const options = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json'
     },
 };
-
-const apiKeys = [process.env.YT_KEY1, process.env.YT_KEY2, process.env.YT_KEY3,
-    process.env.YT_KEY4, process.env.YT_KEY5, process.env.YT_KEY6,
-    process.env.YT_KEY7, process.env.YT_KEY8, process.env.YT_KEY9];
 
 /** API Call to YouTube Data API to get data of a videoId.
  * @param {string} videoId - The ID of the video to get data for.
@@ -18,7 +12,7 @@ const apiKeys = [process.env.YT_KEY1, process.env.YT_KEY2, process.env.YT_KEY3,
 export const getVideo = async (videoId) => {
     // Logic to get video data from YT API
     let url = process.env.YT_BASE_URL + process.env.YT_VIDEO_ENDPOINT;
-    url += `?part=snippet&id=` + videoId + `&key=${apiKeys[getRandomIndex(0, apiKeys.length - 1)]}`;
+    url += `?part=snippet&id=` + videoId + `&key=${process.env.YT_KEY1}`;
 
     // Fetch the data
     const response = await fetch(url, options);
@@ -68,7 +62,7 @@ export const searchVideos = async (params) => {
         url += `&relevanceLanguage=${params.lang}`;
     }
 
-    url += `&key=${apiKeys[getRandomIndex(0, apiKeys.length - 1)]}`;
+    url += `&key=${process.env.YT_KEY1}`;
 
     console.log("URL: " + url);
 

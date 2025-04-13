@@ -1,3 +1,6 @@
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+import { getEntries } from './dynamo-db.mjs';
+
 /** Get a random index between min and max
  * @param {Number} min - Minimum value
  * @param {Number} max - Maximum value
@@ -90,4 +93,15 @@ export const removeDuplicatesByVideoId = (arr) => {
             return true;
         }
     });
+}
+
+/** Convert data from DynamoDB to a more readable format
+ * @param {String} table - DynamoDB table name
+ * @param {String} primaryKey - Primary key of the table
+ * @returns {Array} - Array of objects
+ */
+export const getConvertedData = async (table, primaryKey) => {
+    const data = await getEntries(table, primaryKey);
+
+    return data.map((item) => unmarshall(item));
 }

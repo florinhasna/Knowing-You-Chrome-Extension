@@ -10,6 +10,7 @@ import { getVideo } from './../api/youtube-data-api.mjs';
 export const getVideoData = async (userId, videoId) => {
     console.log(`Getting video data for ${videoId}...`);
 
+    // Fetch data from yt data api
     let video = await getVideo(videoId);
 
     if (video.items.length === 0) {

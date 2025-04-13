@@ -25,7 +25,6 @@ export const processDataForTraining = async (userId, videoInteractions) => {
 
         // Get latest assignment of tags
         previousAssignments = await getItem(TAGS_TABLE, { userId, categoryId: videoWatched.categoryId });
-
         previousAssignments = previousAssignments.Item;
 
         if (previousAssignments) {
@@ -55,6 +54,7 @@ export const processDataForRecommending = async (userId) => {
 
     let videoEntries = await getEntries(VIDEOS_TABLE, userId);
 
+    // Check if user watched enough videos
     if(!videoEntries || videoEntries.length < MINIMUM_THRESHOLD){
         return {
             message: `Not enough data to recommend videos for user: ${userId}.`,
@@ -70,10 +70,12 @@ export const processDataForRecommending = async (userId) => {
         };
     }
 
+    // Initialise video search
     let { searchResults, tagsByCategory } = await searchVideosToRecommend(categoryEntries);
 
     let inputsToProcess = [];
 
+    // Loop videos and process to inputs
     for (let video of searchResults) {
         if (!video || !video.id || !video.id.videoId) {
             continue;

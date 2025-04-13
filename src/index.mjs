@@ -1,5 +1,7 @@
 import { startTraining } from './services/training-service.mjs';
 import { startRecommending } from './services/recommending-service.mjs';
+import { getEvaluationData } from './services/evaluation-data-service.mjs';
+import { USERS } from './config/constants.mjs';
 
 /** Handles the HTTP Gateway API reuqests. */
 export const handler = async (event) => {
@@ -34,6 +36,11 @@ export const handler = async (event) => {
         return {
             statusCode: 200,
             body: JSON.stringify(await startRecommending(queryParams.userId))
+        };
+    } else if (httpMethod === 'GET' && path === '/evaluation-data') {
+        return {
+            statusCode: 200,
+            body: JSON.stringify(await getEvaluationData(USERS))
         };
     } else { // Return 404 on unknown route
         return {
