@@ -1,1 +1,0 @@
-# WNN-Chrome-Extension-Instructions
